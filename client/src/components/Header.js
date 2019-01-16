@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import Payments from './Payment';
 
 class Header extends Component {
   renderContent() {
@@ -15,19 +16,19 @@ class Header extends Component {
         );
       default:
         return (
-          <React.Fragment>
-            <span className="ui right floated button primary">Add Credit</span>
-            <span className="ui right floated button primary">Credits: 5</span>
-            <a className="ui right floated button primary" href="/api/logout">
+          <div>
+            <span><Payments /></span>
+            <span className="ui right floated button primary">Credits: {this.props.auth.credits}</span>
+            <span><a className="ui right floated button primary" href="/api/logout">
               Logout
-            </a>
-          </React.Fragment>
+            </a></span>
+          </div>
         );
     }
   }
   render() {
     return (
-      <div className="ui clearing segment">
+      <div  className="ui clearing segment">
         {this.renderContent()}
         <Link to={this.props.auth ? "/surveys" : "/"} className="ui left floated header">
           App
